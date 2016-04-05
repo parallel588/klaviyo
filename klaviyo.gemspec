@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'klaviyo/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "klaviyo"
+  spec.name          = "parallel588-klaviyo"
   spec.version       = Klaviyo::VERSION
   spec.authors       = ["Maxim Pechnikov"]
   spec.email         = ["parallel588@gmail.com"]
