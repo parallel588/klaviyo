@@ -11,6 +11,7 @@ module Klaviyo
         ssl: { ca_path: Klaviyo::DEFAULT_CA_BUNDLE_PATH }
       ) do |b|
         b.headers['Accept'] = 'application/json'
+        b.request  :url_encoded
         b.response :logger
         b.response :json, content_type: 'application/json'
         b.adapter  Faraday.default_adapter
