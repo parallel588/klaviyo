@@ -1,6 +1,3 @@
-#t = Klaviyo::Client.new('pk_e1e4a6277c5bd631a9b3d3e961ed93a7df', "iB9mvR")
-#t.invoke(:templates, :all)
-#t.invoke(:event, :track, event_name: 'Test Event', customer_properties: { '$email': 'parallel588@gmail.com'})
 module Klaviyo
   API_ENDPOINT = 'https://a.klaviyo.com'
 
