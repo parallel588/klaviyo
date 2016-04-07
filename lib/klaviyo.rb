@@ -1,6 +1,7 @@
 require 'klaviyo/version'
 require 'klaviyo/client'
 require 'klaviyo/templates'
+require 'klaviyo/lists'
 require 'klaviyo/event'
 require 'klaviyo/people'
 

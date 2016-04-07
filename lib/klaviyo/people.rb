@@ -17,6 +17,28 @@ module Klaviyo
         )
         Result.new(res.body)
       end
+
+      #
+      # @reason - unsubscribed, bounced, invalid_email, reported_spam, manually_excluded
+      # @sort - asc|desc
+      #
+      def exclusions(client:, reason: 'unsubscribed', sort: 'asc')
+        client.conn.get(
+          '/api/v1/people/exclusions',
+          api_key: client.api_key,
+          reason: reason,
+          sort: sort
+        )
+      end
+
+      def exclude(client:, email:, ts: Time.now.to_i)
+        client.conn.post(
+          '/api/v1/people/exclusions',
+          api_key: client.api_key,
+          email: email,
+          timestamp: ts
+        )
+      end
     end
 
     extend ApiOperations
