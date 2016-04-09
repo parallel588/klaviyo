@@ -3,38 +3,15 @@ module Klaviyo
     # https://www.klaviyo.com/docs/api/people
     #
     module ApiOperations
-      Result = Struct.new(:response) do
-        def success?
-          response.to_s == '1'
-        end
-      end
-      ErrorResult = Struct.new(:response) do
-        def success?; false; end
-        def status; response['status']; end
-        def message; response['message']; end
-      end
-
-      Person = Struct.new(:attrs) do
-        def method_missing(method_name, *arguments, &block)
-          if attrs.key?(method_name.to_s)
-            attrs[method_name.to_s]
-          elsif attrs.key?("$#{method_name}")
-            attrs["$#{method_name}"]
-          else
-            super
-          end
-        end
-      end
 
       # https://www.klaviyo.com/docs/http-api#people
       # invoke(:people, :identify, properties: { '$email': 'useremail@ua.com' })
       #
       def identify(client:, properties: {})
-        res = client.conn.get(
+        client.conn.get(
           '/api/identify',
           client.build_params(properties: properties)
-        )
-        Result.new(res.body)
+        ).body.to_s == '1'
       end
 
       #
@@ -60,19 +37,17 @@ module Klaviyo
       end
 
       def find(client:, id:)
-        res = client.conn.get("/api/v1/person/#{id}", api_key: client.api_key)
-        if res.success?
-          Person.new(res.body)
-        else
-          ErrorResult.new(res.body)
-        end
+        Klaviyo::Resource.build(
+          client.conn.get("/api/v1/person/#{id}", api_key: client.api_key).body
+        )
       end
 
       def update(client:, id:, attrs: {})
-        client.conn.put(
+        Klaviyo::Resource.build(
+          client.conn.put(
           "/api/v1/person/#{id}",
           { api_key: client.api_key }.merge(attrs)
-        )
+        ).body)
       end
 
       def events(client:, id:, sort: 'desc', per: 100, since: Time.now.to_i)

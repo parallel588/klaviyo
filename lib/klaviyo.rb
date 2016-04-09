@@ -1,9 +1,4 @@
 require 'klaviyo/version'
-require 'klaviyo/client'
-require 'klaviyo/templates'
-require 'klaviyo/lists'
-require 'klaviyo/event'
-require 'klaviyo/people'
 
 require 'active_support'
 require 'active_support/core_ext'
@@ -11,6 +6,15 @@ require 'faraday'
 require 'faraday_middleware'
 require 'json'
 require 'virtus'
+
+require 'klaviyo/client'
+require 'klaviyo/errors'
+require 'klaviyo/resource'
+require 'klaviyo/templates'
+require 'klaviyo/lists'
+require 'klaviyo/event'
+require 'klaviyo/people'
+
 
 
 module Klaviyo

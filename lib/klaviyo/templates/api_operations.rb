@@ -5,7 +5,11 @@ module Klaviyo
     module ApiOperations
 
       def all(client:)
-        client.conn.get('/api/v1/email-templates', api_key: client.api_key)
+        Klaviyo::Resource.build_collection(
+          client.conn.get('/api/v1/email-templates',
+                          api_key: client.api_key
+                         ).body
+        )
       end
 
       def create(client:, name:, html:)
