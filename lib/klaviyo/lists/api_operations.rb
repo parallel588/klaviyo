@@ -69,7 +69,7 @@ module Klaviyo
       #
       # @id - list id
       #
-      def subscribe(client:, id:, email:, properties: {}, confirm_optin: true)
+      def subscribe(client:, id:, email:, properties: {}, confirm_optin: false)
         Klaviyo::Resource.build(
           client.conn.post("/api/v1/list/#{id}/members",
                            api_key: client.api_key,
@@ -93,11 +93,11 @@ module Klaviyo
       #
       # @id - list id
       #
-      def batch_subscribe(client:, id:, batch:, confirm_optin: true)
+      def batch_subscribe(client:, id:, batch: [], confirm_optin: false)
         client.conn.post(
           "/api/v1/list/#{id}/members/batch",
           api_key: client.api_key,
-          batch: batch,
+          batch: JSON.generate(batch),
           confirm_optin: confirm_optin
         )
       end
