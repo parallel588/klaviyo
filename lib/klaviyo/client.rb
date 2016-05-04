@@ -45,7 +45,6 @@ module Klaviyo
     define_api_method resource: :people, action: :find
     define_api_method resource: :people, action: :exclusions
     define_api_method resource: :people, action: :exclude
-    define_api_method resource: :people, action: :create
     define_api_method resource: :people, action: :update
     define_api_method resource: :people, action: :events
     define_api_method resource: :people, action: :metric_events

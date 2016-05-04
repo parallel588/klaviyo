@@ -42,18 +42,12 @@ module Klaviyo
         )
       end
 
-      def create(client:, attrs: {})
-        Klaviyo::Resource.build(
-          client.conn.put('/api/v1/person',
-                          { api_key: client.api_key }.merge(attrs)
-                         ).body)
-      end
-
       def update(client:, id:, attrs: {})
         Klaviyo::Resource.build(
-          client.conn.put("/api/v1/person/#{id}",
-                          { api_key: client.api_key }.merge(attrs)
-                         ).body)
+          client.conn.put(
+          "/api/v1/person/#{id}",
+          { api_key: client.api_key }.merge(attrs)
+        ).body)
       end
 
       def events(client:, id:, sort: 'desc', per: 100, since: Time.now.to_i)
