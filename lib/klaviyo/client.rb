@@ -69,6 +69,9 @@ module Klaviyo
     define_api_method resource: :templates, action: :render
     define_api_method resource: :templates, action: :render_and_send
 
+    define_api_method resource: :event, action: :track
+    define_api_method resource: :event, action: :track_once
+
     private
 
     def constantize(class_name)
