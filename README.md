@@ -1,8 +1,8 @@
 # Klaviyo
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/klaviyo`. To experiment with that code, run `bin/console` for an interactive prompt.
+    https://www.klaviyo.com/docs/http-api
 
-TODO: Delete this and the text above, and describe your gem
+
 
 ## Installation
 
@@ -22,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+    klaviyo_client = Klaviyo::Client.new(ENV['secret_key'], ENV['public_key'])
+    klaviyo_client.people.find(id: user_id)
+
+```
 
 ## Development
 
@@ -33,4 +37,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/klaviyo.
-
