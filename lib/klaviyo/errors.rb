@@ -5,6 +5,7 @@ module Klaviyo
     class UnprocessableEntity < KlaviyoError; end
     class InternalServerError < KlaviyoError; end
     class NotAuthorized < KlaviyoError; end
+    class AuthenticationError < KlaviyoError; end
 
     class RequestError < Faraday::Response::Middleware
 
@@ -31,8 +32,3 @@ module Klaviyo
 
   end
 end
-
-#400 Bad request - Request is missing or has a bad parameter.
-#401 Not Authorized - Request is missing or has an invalid API key.
-#404 Not Found - The requested resource doesn't exist.
-#500 Server errors - Something is wrong on Klaviyo's end.

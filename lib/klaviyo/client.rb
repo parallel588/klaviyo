@@ -1,7 +1,7 @@
 require_relative 'client_dsl'
 require_relative 'errors'
 module Klaviyo
-  API_ENDPOINT = 'https://a.klaviyo.com'
+  API_ENDPOINT = 'https://a.klaviyo.com'.freeze
 
   class Client
     extend ClientDSL
@@ -10,6 +10,11 @@ module Klaviyo
     def initialize(api_key, token)
       @api_key = api_key
       @token = token
+
+      raise Errors::AuthenticationError, 'No API key provided.' unless @api_key
+      raise Errors::AuthenticationError, 'No Token provided.' unless @token
+
+
       @conn = Faraday.new(
         url: API_ENDPOINT,
         ssl: { ca_path: Klaviyo::DEFAULT_CA_BUNDLE_PATH }
