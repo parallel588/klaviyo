@@ -35,7 +35,7 @@ module Klaviyo
       )
 
       {
-        data: CGI.escape(Base64.encode64(JSON.generate(options)).delete("\n"))
+        data: CGI.escape(Base64.strict_encode64(JSON.generate(options)))
       }
     end
 
