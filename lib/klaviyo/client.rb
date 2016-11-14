@@ -7,18 +7,13 @@ module Klaviyo
     extend ClientDSL
 
     attr_reader :api_key, :conn, :token
-    def initialize(api_key, token)
+    def initialize(api_key, token, req_options = {})
       @api_key = api_key
       @token = token
-
       raise Errors::AuthenticationError, 'No API key provided.' unless @api_key
       raise Errors::AuthenticationError, 'No Token provided.' unless @token
 
-
-      @conn = Faraday.new(
-        url: API_ENDPOINT,
-        ssl: { ca_path: Klaviyo::DEFAULT_CA_BUNDLE_PATH }
-      ) do |f|
+      @conn = Faraday.new(default_req_options.merge(req_options)) do |f|
         f.headers['Accept'] = 'application/json'
         f.request  :url_encoded
         f.response :logger
@@ -78,6 +73,13 @@ module Klaviyo
     define_api_method resource: :event, action: :track_once
 
     private
+
+    def default_req_options
+      {
+        url: API_ENDPOINT,
+        ssl: { ca_path: Klaviyo::DEFAULT_CA_BUNDLE_PATH }
+      }
+    end
 
     def constantize(class_name)
       Object.module_eval(
