@@ -77,7 +77,10 @@ module Klaviyo
     def default_req_options
       {
         url: API_ENDPOINT,
-        ssl: { ca_path: Klaviyo::DEFAULT_CA_BUNDLE_PATH }
+        ssl: {
+          ca_path: Klaviyo::DEFAULT_CA_BUNDLE_PATH,
+          ca_file: File.join(Klaviyo::DEFAULT_CA_BUNDLE_PATH, 'ca-certificates.crt')
+        }
       }
     end
 
