@@ -3,7 +3,7 @@ require 'klaviyo/version'
 require 'active_support'
 require 'active_support/core_ext'
 require 'faraday'
-require 'faraday_middleware'
+require 'multi_json'
 require 'json'
 require 'virtus'
 
