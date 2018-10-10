@@ -14,9 +14,8 @@ module Klaviyo
       raise Errors::AuthenticationError, 'No Token provided.' unless @token
 
       @conn = Faraday.new(default_req_options.merge(req_options)) do |f|
-        f.headers['Accept'] = 'application/json'
-        f.headers[:content_type] = 'application/json'
-        f.request  :url_encoded
+        f.request :url_encoded
+
         f.use Errors::RequestError
         f.adapter Faraday.default_adapter
       end
