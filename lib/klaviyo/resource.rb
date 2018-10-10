@@ -36,8 +36,8 @@ module Klaviyo
     class Folder < KlaviyoObject; end
     class Membership < KlaviyoObject; end
 
-    def self.build(attrs)
-
+    def self.build(params)
+      attrs = params.is_a?(String) ? MultiJson.load(params) : params
       object = attrs.delete('object')
       case object.to_s
       when 'person'
