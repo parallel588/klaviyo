@@ -21,7 +21,8 @@ module Klaviyo
 
       attr_reader :meta, :items
 
-      def initialize(data)
+      def initialize(raw_data)
+        data = raw_data.is_a?(String) ? MultiJson.load(raw_data) : raw_data
         @items = data.delete('data').map { |attrs| Klaviyo::Resource.build(attrs) }
         @meta = data
       end
