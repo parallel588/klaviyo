@@ -21,10 +21,10 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency('json', '>= 1.7')
   spec.add_runtime_dependency('faraday', '~> 0.15.4')
   spec.add_runtime_dependency('multi_json', '~> 1.13')
-  spec.add_runtime_dependency('activesupport', ['>= 3.1', '< 6.0'])
+  spec.add_runtime_dependency('activesupport', ['>= 3.1', '< 7.0'])
 
   spec.add_development_dependency 'bundler', '~> 1.11'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.3'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'pry', '~> 0.10.3'
   spec.add_development_dependency 'webmock', '~> 2.0', '>= 2.0.3'
