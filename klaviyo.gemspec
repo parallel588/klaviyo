@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency('virtus', '~> 1.0')
-  spec.add_runtime_dependency('json', '~> 1.7')
+  spec.add_runtime_dependency('json')
   spec.add_runtime_dependency('faraday', '~> 1.6.0')
   spec.add_runtime_dependency('multi_json', '~> 1.13')
   spec.add_runtime_dependency('activesupport', ['>= 3.1', '< 7.0'])
